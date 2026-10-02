@@ -1,0 +1,13 @@
+
+'''sql
+ SELECT 
+ 	store as store_number,
+    COUNT(*) AS total_records,
+    ROUND(SUM(weekly_sales)::numeric, 2) AS total_revenue,
+    ROUND(AVG(weekly_sales)::numeric, 2) AS avg_weekly_sales,
+    ROUND(MIN(weekly_sales)::numeric, 2) AS min_weekly_sales,
+    ROUND(MAX(weekly_sales)::numeric, 2) AS max_weekly_sales,
+    ROUND(STDDEV(weekly_sales)::numeric, 2) AS std_dev_sales
+FROM walmart_sales
+group by store
+order by total_revenue desc;
