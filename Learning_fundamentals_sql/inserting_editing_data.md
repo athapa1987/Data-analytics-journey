@@ -19,4 +19,15 @@ VALUES
     ('Grace', 'Harper', 'g.harper@tech.com', 'HR', 48000.00, '2025-12-22'),
     ('Dani', 'Ramos', 'd.ramos@tech.com', 'Marketing', 55000.00, '2025-12-22');
 ```
+* Employee id is not inserted as it is automatically generated starting from 1234 and increasing 104.
+   
+## 2. Inserting more data
+```sql
+INSERT INTO employees (First_name, Last_name, Email, Department)
+VALUES 
+    ('Deepa', 'Gandhi', 'alex.taylor@example.com', 'Operations'),
+    ('Aman', 'Thapa', 'jordan.lee@example.com', 'Marketing');
+	```
+* As the minimum salary is default as 30000 and start date is default as current date, thus those data were not put.
+
 
