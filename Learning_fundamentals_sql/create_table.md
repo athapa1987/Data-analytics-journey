@@ -1,6 +1,6 @@
 # SQL Fundamentals & Schema Design
 
-This directory documents foundational database management concepts in PostgreSQL, including Data Definition Language (DDL), primary keys, custom identity sequences, constraints, and default values.
+This directory documents foundational database management concepts in PostgreSQL, created table using different data types, primary keys, custom identity sequences, constraints, and default values.
 
 ---
 ## 1. Database Creation (Create Database)
@@ -24,4 +24,11 @@ CREATE TABLE employees (
     Start_date DATE 
 );
 ```
+## 3. Actually I wanted to hire date to column thus use altered table and renamed the column:
+
+```sql
+ALTER TABLE employees 
+RENAME COLUMN start_date TO hire_date;
+```
+
 
