@@ -1,6 +1,6 @@
 Further breaking the sales record
 calculated using aggregate function (`SUM`, `AVG`, `STDDEV`, `MIN`, `MAX`) and group by store and also displayed store number to further analysis
-1. ordered by total revenue in descending order to answer which store have higher sales and lower sales
+1. ordered by total sales in descending order to answer which store have highest sales to lowest sales
 
 ```sql
  SELECT 
