@@ -21,14 +21,18 @@ CREATE TABLE employees (
 	Email VARCHAR (150) UNIQUE,
     Department VARCHAR(50),
     Salary DECIMAL(10,2) DEFAULT 30000.00,
-    Start_date DATE 
+    Hire_date DATE 
 );
 ```
 ## 3. Actually I wanted to hire date to column thus use altered table and renamed the column:
 
 ```sql
 ALTER TABLE employees 
-RENAME COLUMN start_date TO hire_date;
+RENAME COLUMN Hire_date TO Start_date;
 ```
-
+## 4. I wanted to put put default on Start date so that I selected alter and set the data to default as current date 
+```sql
+ALTER TABLE employees 
+ALTER COLUMN Start_date SET DEFAULT CURRENT_DATE;
+```
 
