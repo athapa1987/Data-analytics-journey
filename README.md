@@ -1,4 +1,3 @@
-# Data-analytics-journey
 # Walmart Sales Data Analysis
 
 ## Project Overview
