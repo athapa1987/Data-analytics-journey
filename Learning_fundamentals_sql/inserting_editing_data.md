@@ -27,7 +27,7 @@ INSERT INTO employees (First_name, Last_name, Email, Department)
 VALUES 
     ('Deepa', 'Gandhi', 'alex.taylor@example.com', 'Operations'),
     ('Aman', 'Thapa', 'jordan.lee@example.com', 'Marketing');
-	```
+```
 * As the minimum salary is default as 30000 and start date is default as current date, thus those data were not put.
 
 
