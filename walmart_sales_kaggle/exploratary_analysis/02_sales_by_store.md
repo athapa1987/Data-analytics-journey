@@ -2,7 +2,7 @@ Further breaking the sales record
 calculated using aggregate function (`SUM`, `AVG`, `STDDEV`, `MIN`, `MAX`) and group by store and also displayed store number to further analysis
 1. ordered by total revenue in descending order to answer which store have higher sales and lower sales
 
-'''sql
+```sql
  SELECT 
  	store as store_number,
     COUNT(*) AS total_records,
@@ -14,7 +14,7 @@ calculated using aggregate function (`SUM`, `AVG`, `STDDEV`, `MIN`, `MAX`) and g
 FROM walmart_sales
 group by store
 order by total_revenue desc;
-'''
+```
 ###
 store 20 have highest sales while 33 have lowest revenue.
 
