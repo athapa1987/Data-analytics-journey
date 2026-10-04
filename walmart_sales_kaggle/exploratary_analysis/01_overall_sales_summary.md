@@ -17,4 +17,4 @@ FROM walmart_sales;
 | total_records | total_revenue | avg_weekly_sales | min_weekly_sales | max_weekly_sales | std_dev_sales |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | **6435** | 6,737,218,987.11 | 1,046,964.88 | 209,986.25 | 3,818,686.45 | 564,366.62 |
-There were 6435 records 6.7 billion of slaes, and so on 
+There were 6435 records 6.7 billion of total sales and so on 
