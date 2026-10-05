@@ -36,3 +36,14 @@ ALTER TABLE employees
 ALTER COLUMN Start_date SET DEFAULT CURRENT_DATE;
 ```
 
+## 5. Drop Database (delete/remove)
+```sql
+DROP DATABASE Ashok;
+```
+ ## Drop Table 
+```sql
+DROP TABLE employees;
+```
+* Deleting is only possible if the database is not accessed by several users at the time. 
+
+
