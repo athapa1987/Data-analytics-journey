@@ -1,4 +1,5 @@
-# This files includes insert and edit of data
+# This files includes methods of inserting, updating and deleting data
+
 ## 1. Insert data on to the table employee
 ```sql
 INSERT INTO employees (First_name, Last_name, Email, Department, Salary, Start_date)
@@ -29,5 +30,37 @@ VALUES
     ('Aman', 'Thapa', 'jordan.lee@example.com', 'Marketing');
 ```
 * As the minimum salary is default as 30000 and start date is default as current date, thus those data were not put.
+
+## 3. Updating Table: 
+lets assume salary is increased by 2% this year to all the employees. Therefore, I use
+```sql
+update employees
+set salary = Round(salary *1.02, 2);
+```
+* Here is the problem, it will update salary by 2% which is current salary but will loose the old record. Therefore, downloading the file on csv is one thing we could do but it is prone to human error and storing and retrieving problem. Therefore, it looks better to create another table and keep record the histroy. 
+
+```sql
+create table salary_history (
+history_id bigint primary key generated always as identity, 
+employees_id bigint references employees (employees_id),
+old_salary Decimal (10, 2) not null, 
+new_salary decimal (10,2) not null,
+changed_at timestamp default current_timestamp
+);
+```
+* history_id is kept as primary key and connected to the identity thus it makes easy to see the updates of salaries, also kept the exact time (current_timestamp).
+  
+Then inserting salary and employee into the table
+```sql
+insert into salary_history (employees_id, old_salary, new_salary)
+select 
+employees_id, 
+salary as old_salary, 
+round(salary * 1.02, 2) as new_salary
+from employees; 
+```
+* Now I update the main table so that historical salary can be seen.
+
+  
 
 
