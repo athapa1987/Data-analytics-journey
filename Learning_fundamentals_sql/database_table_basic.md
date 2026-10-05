@@ -50,6 +50,7 @@ CREATE TABLE employees (
     salary DECIMAL(10,2) DEFAULT 30000.00,
     start_date DATE NOT NULL DEFAULT CURRENT_DATE
 );
+```
 
 ## 5. Drop Database (delete/remove)
 ```sql
