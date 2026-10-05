@@ -33,10 +33,7 @@ VALUES
 
 ## 3. Updating Table: 
 lets assume salary is increased by 2% this year to all the employees. Therefore, I use
-```sql
-update employees
-set salary = Round(salary *1.02, 2);
-```
+
 * Here is the problem, it will update salary by 2% which is current salary but will loose the old record. Therefore, downloading the file on csv is one thing we could do but it is prone to human error and storing and retrieving problem. Therefore, it looks better to create another table and keep record the histroy. 
 
 ```sql
@@ -59,7 +56,13 @@ salary as old_salary,
 round(salary * 1.02, 2) as new_salary
 from employees; 
 ```
-* Now I update the main table so that historical salary can be seen.
+* Now I update the main table maintaining the history.
+
+  ```sql
+update employees
+set salary = Round(salary *1.02, 2);
+```
+
 
   
 
