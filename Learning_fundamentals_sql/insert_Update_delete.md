@@ -119,6 +119,21 @@ after update on employees
 for each row 
 execute function log_salary_increment ();
 ```
+### to try the function is successful or not - lets assume due to great performance from marketing team management decided to increase the salary of marketing department by 2000. 
+```sql
+Update employees
+set salary = salary + 2000 
+where department = 'Marketing';
+```
+#### to check whether it is done automatically or not
+``sql
+select * from salary_history sh
+join employees e
+on sh.employees_id = e.employees_id
+where e.department = 'Marketing'
+order by e.employees_id;
+```
+* trigger worked successfully as salary is updated 2 times on marketing.
 
 
 
