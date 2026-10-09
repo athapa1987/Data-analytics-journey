@@ -95,7 +95,7 @@ from employees;
 ```
 * Now I came to the same place where I wanted to automate the salary history log thus I create function now
   
-``sql
+```sql
 create or replace function log_salary_increment()
 returns trigger as $$
 begin
