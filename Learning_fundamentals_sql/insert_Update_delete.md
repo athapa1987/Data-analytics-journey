@@ -59,7 +59,7 @@ from employees;
 
 * Now I update the main table maintaining the history.
 
-  ```sql
+```sql
 update employees
 set salary = Round(salary *1.02, 2);
 ```
