@@ -56,10 +56,12 @@ CREATE TABLE employees (
 ```sql
 DROP DATABASE Ashok;
 ```
- ## Drop Table 
+ ## 6. Drop Table 
 ```sql
 DROP TABLE employees;
 ```
-* Deleting is only possible if the database is not accessed by several users at the time. 
+* Deleting is only possible if the database is not accessed by several users at the time.
+
+
 
 
