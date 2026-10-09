@@ -92,8 +92,30 @@ round(salary/1.02)as old_salary,
 salary as new_salary 
 from employees;
 ```
-* Now I came to the same place to automate the salary history log thus I create tigger now
+* Now I came to the same place where I wanted to automate the salary history log thus I create function now
 ``sql
-  
+  create or replace function log_salary_increment()
+returns trigger as $$
+begin
+if old.salary is distinct from new.salary then 
+insert into salary_history (employees_id, old_salary, new_salary)
+values (old.employees_id, old.salary, new.salary);
+end if;
+return new; 
+end; 
+$$language plpgsql;
+```
+* now creating and attaching function
+### dropping if there is any function 
+```sql
+drop trigger if exists trg_salary_history on employees;
+```
+### now creating function for automatic salary_history update
+create trigger trg_salary_history 
+after update on employees 
+for each row 
+execute function log_salary_increment ();
+
+
 
 
