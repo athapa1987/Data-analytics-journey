@@ -92,7 +92,8 @@ round(salary/1.02)as old_salary,
 salary as new_salary 
 from employees;
 ```
-
+* Now I came to the same place to automate the salary history log thus I create tigger now
+``sql
   
 
 
