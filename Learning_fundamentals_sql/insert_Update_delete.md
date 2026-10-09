@@ -66,9 +66,32 @@ set salary = Round(salary *1.02, 2);
 
 ## I could maintain the records but there is a problem as the salary history is not updated automatically. Thus, I decided to drop the salary_history table.
 ```sql
-drop table salary_hisotry;\
+drop table salary_hisotry;
 ```
-
+* Creating salary_history table again now,
+  
+```sql
+create table  if not exists salary_history (
+history_id bigint primary key generated always as identity, 
+employees_id bigint not null, 
+old_salary decimal (10, 2) not null, 
+new_salary decimal (10, 2) not null, 
+changed_at timestamp default current_timestamp, 
+constraint fk_salary_history_employees 
+foreign key (employees_id) 
+references employees (employees_id));
+```
+* Here I think I waisted time as I made the same table as the former salary_histroy table have automatic foreign key constraint assigned to employees as reference from table directly while here I manually did.
+* Also I could put 'on delete cascade' if I want to remove the detail of employees that are no longer in system or 'on update cascade' if I want to update the table but my purpose is to keep the history thus I did not use them.
+* Now repeating the process of putting data again but the salary table is already updated with 2% thus,
+```sql
+Insert into salary_history (employees_id, old_salary, new_salary)
+select 
+employees_id, 
+round(salary/1.02)as old_salary,
+salary as new_salary 
+from employees;
+```
 
   
 
