@@ -94,8 +94,9 @@ salary as new_salary
 from employees;
 ```
 * Now I came to the same place where I wanted to automate the salary history log thus I create function now
+  
 ``sql
-  create or replace function log_salary_increment()
+create or replace function log_salary_increment()
 returns trigger as $$
 begin
 if old.salary is distinct from new.salary then 
