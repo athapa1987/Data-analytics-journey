@@ -64,7 +64,8 @@ update employees
 set salary = Round(salary *1.02, 2);
 ```
 
-## I could maintain the records but there is a problem as the salary history is not updated automatically. Thus, I decided to drop the salary_history table.
+*    I could maintain the records but there is a problem as the salary history is not updated automatically. Thus, I decided re-engineering it
+  Thus dropping the salary_history table.
 ```sql
 drop table salary_hisotry;
 ```
