@@ -7,3 +7,7 @@ This directory documents my foundational SQL practice covering Data Definition L
 * **Table Management (DDL):** `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`, primary keys, and data types.
 * **Data Manipulation (DML):** Inserting records (`INSERT INTO`), updating existing rows (`UPDATE`), and deleting records (`DELETE`).
 * **Data Integrity:** Primary keys, `NOT NULL` constraints, and foreign key relationships.
+
+## 2.  **File:** `data_manipulation_language.md`  
+**Description:** A detailed practical guide documenting INSERT, UPDATE operations, data integrity constraints, foreign keys, and automated audit logging using PostgreSQL triggers and PL/pgSQL functions.
+
