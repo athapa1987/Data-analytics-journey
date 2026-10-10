@@ -120,6 +120,7 @@ $$language plpgsql;
 drop trigger if exists trg_salary_history on employees;
 ```
 ### now creating function for automatic salary_history update
+
 ```sql
 create trigger trg_salary_history 
 after update on employees 
