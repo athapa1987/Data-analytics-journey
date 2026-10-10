@@ -85,8 +85,105 @@ VALUES
     ('Kyle Reese', 'k.reese@tech.com', 'IT', 52000.00, '2025-12-22'),
     ('Grace Harper', 'g.harper@tech.com', 'HR', 48000.00, '2025-12-22'),
     ('Dani Ramos', 'd.ramos@tech.com', 'Marketing', 55000.00, '2025-12-22');
-```sql
+```
 
 ## Creating new table for salary_history
+```sql
+create table salary_history (
+history_id bigint primary key generated always as identity, 
+employees_id bigint not null references employees, 
+old_salary dec(10, 2) not null default 0.00, 
+current_salary dec(10,2) not null, 
+updated_on timestamp not null default current_timestamp, 
+updated_by varchar (50) not null default current_user
+);
+```
+
+## inserting data into salary_history
+```sql
+insert into salary_history (employees_id, current_salary)
+select
+employees_id, 
+salary as current_salary
+from employees;
+```
+
+## creating function for auto update of salary in salary_history table
+creating function
+```sql
+CREATE OR REPLACE FUNCTION log_salary_changes ()
+RETURNS TRIGGER AS $$
+BEGIN 
+IF (TG_OP= 'INSERT') THEN
+INSERT INTO salary_history (employees_id, old_salary, current_salary)
+VALUES (new.employees_id, 0.00, new.salary);
+RETURN NEW; 
+ELSIF (TG_OP= 'UPDATE') THEN
+IF old.salary IS DISTINCT FROM new.salary THEN 
+INSERT INTO salary_history (employees_id,old_salary,current_salary)
+VALUES (old.employees_id, old.salary, new.salary);
+END IF; 
+RETURN NEW; 
+END IF; 
+RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+executing function 
+```sql
+CREATE TRIGGER trg_Salary_history_update
+AFTER INSERT OR UPDATE ON employees 
+FOR EACH ROW
+EXECUTE FUNCTION log_salary_changes();
+```
+
+## Employees salary increased by 2%
+```sql
+update employees
+set salary = Round(salary *1.02, 2);
+```
+
+## Verifying if the Update trigger is working as intended
+```sql
+select 
+sh. history_id,
+e. employees_id,
+e. full_name,
+sh.old_salary,
+sh.current_salary,
+e. department
+from salary_history sh
+join employees e 
+on sh.employees_id = e. employees_id
+order by e.department, sh.employees_id;
+```
+It's working. 
+
+## New Employees is hired 
+```sql
+INSERT INTO employees (full_name, email_id, department, salary)
+VALUES
+('Deepa Sindhe', 'deepa.sindhe@example.com', 'HR', '32000'),
+('Aman Gandhi', 'aman.gandhi@example.com', 'IT', '50000');
+```
+
+## Verifying if insert trigger function is working as assigned
+```sql
+select 
+sh. history_id,
+e. employees_id,
+e. full_name,
+sh.old_salary,
+sh.current_salary,
+e. department
+from salary_history sh
+join employees e 
+on sh.employees_id = e. employees_id
+where e.full_name = 'Deepa Sindhe' or e.full_name= 'Aman Gandhi';
+```
+It is verified that both entries are also updated on salary history. 
+
+
 
     
