@@ -160,6 +160,28 @@ FROM salary_history sh
 JOIN employees e ON sh.employees_id = e.employees_id
 order by e.department, sh.employees_id;
 ```
-### Result: it displayed the table arrange by department and employees. 
+* Result: it displayed the table arrange by department and employees.
+
+### what if the new employees are added and they have no salary history, it can be seen using left join however, we also could add function to do this, 
+* creating function 
+```sql
+create or replace function log_employee_audit ()
+returns trigger as $$
+begin
+insert into salary_history (employees_id, old_salary, new_salary)
+values (new.employees_id, 0.00, new.salary);
+return new;
+end; 
+$$ language plpgsql;
+```
+
+* executing function:
+```sql
+create trigger trg_employee_audit
+after update on employees 
+for each row
+execute function log_employee_audit ();
+```sql
+
 
 
