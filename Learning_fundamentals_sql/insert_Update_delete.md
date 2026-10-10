@@ -46,6 +46,7 @@ new_salary decimal (10,2) not null,
 changed_at timestamp default current_timestamp
 );
 ```
+
 * history_id is kept as primary key and connected to the identity thus it makes easy to see the updates of salaries, also kept the exact time (current_timestamp).
   
 Then inserting salary and employee into the table
@@ -70,6 +71,7 @@ set salary = Round(salary *1.02, 2);
 ```sql
 drop table salary_hisotry;
 ```
+
 * Creating salary_history table again now,
   
 ```sql
@@ -83,9 +85,11 @@ constraint fk_salary_history_employees
 foreign key (employees_id) 
 references employees (employees_id));
 ```
+
 * Here I think I waisted time as I made the same table as the former salary_histroy table have automatic foreign key constraint assigned to employees as reference from table directly while here I manually did.
 * Also I could put 'on delete cascade' if I want to remove the detail of employees that are no longer in system or 'on update cascade' if I want to update the table but my purpose is to keep the history thus I did not use them.
 * Now repeating the process of putting data again but the salary table is already updated with 2% thus,
+  
 ```sql
 Insert into salary_history (employees_id, old_salary, new_salary)
 select 
@@ -94,6 +98,7 @@ round(salary/1.02)as old_salary,
 salary as new_salary 
 from employees;
 ```
+
 * Now I came to the same place where I wanted to automate the salary history log thus I create function now
   
 ```sql
@@ -108,6 +113,7 @@ return new;
 end; 
 $$language plpgsql;
 ```
+
 * now creating and attaching function
 ### dropping if there is any function 
 ```sql
@@ -120,6 +126,7 @@ after update on employees
 for each row 
 execute function log_salary_increment ();
 ```
+
 ### to try the function is successful or not - 
 lets assume due to great performance from marketing team management decided to increase the salary of marketing department by 2000. 
 ```sql
@@ -127,7 +134,7 @@ Update employees
 set salary = salary + 2000 
 where department = 'Marketing';
 ```
-#### to check whether it is done automatically or not
+### to check whether it is done automatically or not
 ``sql
 select * from salary_history sh
 join employees e
@@ -137,7 +144,7 @@ order by e.employees_id;
 ```
 * trigger worked successfully as salary is updated 2 times on marketing.
 
-#### further to see how much salary increased each time and verifying the audit log. Also wanted to salary grouped by department and employees_id. Since group by and order by might confuse the command and thus,
+### Further to see how much salary increased each time and verifying the audit log. Also wanted to salary grouped by department and employees_id. Since group by and order by might confuse the command and thus,
 
 ```sql
 select
