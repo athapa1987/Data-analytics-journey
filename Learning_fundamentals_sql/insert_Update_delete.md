@@ -265,6 +265,7 @@ execute function log_salary_changes ();
 ```
 
 Now, updating the table:
+```sql
 insert into employees (first_name, last_name, email, department, salary)
 Values
 ('Bhanu','Pratap','pratap.bhanu@example.com','Marketing','34000');
@@ -272,5 +273,9 @@ Values
 update employees 
 set salary = salary + 1000
 where department = 'finance';
+```
+Now, verifying: 
+```sql
+
 
 
