@@ -136,7 +136,7 @@ set salary = salary + 2000
 where department = 'Marketing';
 ```
 ### to check whether it is done automatically or not
-``sql
+```sql
 select * from salary_history sh
 join employees e
 on sh.employees_id = e.employees_id
