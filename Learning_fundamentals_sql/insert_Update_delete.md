@@ -1,4 +1,4 @@
-# Introduction: 
+## Introduction: 
 Here in this document I inserted data and updated table. Furthermore, I created the other table for data integrity and automation. So, this file is detailed practice of data manipulating language (DML).  
 
 ## 1. Insert data into the table employee
