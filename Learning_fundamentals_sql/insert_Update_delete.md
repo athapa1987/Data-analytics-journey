@@ -1,6 +1,7 @@
-# This files includes methods of inserting, updating and deleting data
+# Introduction: 
+    Here in this document I inserted data and updated table. Furthermore, I created the other table for data integrity and automation. So, this file is detailed practice of data manipulating language (DML).  
 
-## 1. Insert data on to the table employee
+## 1. Insert data into the table employee
 ```sql
 INSERT INTO employees (First_name, Last_name, Email, Department, Salary, Start_date)
 VALUES
@@ -22,7 +23,7 @@ VALUES
 ```
 * Employee id is not inserted as it is automatically generated starting from 1234 and increasing 104.
    
-## 2. Inserting more data
+## 2. Experimenting the default values are working or not:
 ```sql
 INSERT INTO employees (First_name, Last_name, Email, Department)
 VALUES 
@@ -119,7 +120,8 @@ after update on employees
 for each row 
 execute function log_salary_increment ();
 ```
-### to try the function is successful or not - lets assume due to great performance from marketing team management decided to increase the salary of marketing department by 2000. 
+### to try the function is successful or not - 
+lets assume due to great performance from marketing team management decided to increase the salary of marketing department by 2000. 
 ```sql
 Update employees
 set salary = salary + 2000 
@@ -135,5 +137,21 @@ order by e.employees_id;
 ```
 * trigger worked successfully as salary is updated 2 times on marketing.
 
+#### further to see how much salary increased each time and verifying the audit log. Also wanted to salary grouped by department and employees_id. Since group by and order by might confuse the command and thus,
+
+```sql
+select
+sh.history_id,
+e.employees_id,
+e.first_name ||' '||e.last_name as full_name,
+e.department,
+sh.old_salary,
+sh.new_salary,
+round(sh.new_salary - sh.old_salary, 2) as increment_amound
+FROM salary_history sh
+JOIN employees e ON sh.employees_id = e.employees_id
+order by e.department, sh.employees_id;
+```
+### Result: it displayed the table arrange by department and employees. 
 
 
