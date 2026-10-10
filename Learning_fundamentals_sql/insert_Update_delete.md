@@ -264,9 +264,9 @@ AFTER INSERT OR UPDATE ON employees
 FOR EACH ROW
 EXECUTE FUNCTION log_salary_changes();
 ```
-    I encountered a problem while running this function because I had written all my queries in lowercase. I tried many times, but it worked after I changed all the commands to uppercase.
+I encountered a problem while running this function because I had written all my queries in lowercase. I tried many times, but it worked after I changed all the commands to uppercase.
 
-    I also found out that `TG_OP = 'INSERT'` and `TG_OP = 'UPDATE'` should use uppercase string values because string comparisons are case-sensitive. `INSERT` and `insert`, or `UPDATE` and `update`, are not always treated as equal.
+I also found out that `TG_OP = 'INSERT'` and `TG_OP = 'UPDATE'` should use uppercase string values because string comparisons are case-sensitive. `INSERT` and `insert`, or `UPDATE` and `update`, are not always treated as equal.
     
 Now, updating the table:
 ```sql
