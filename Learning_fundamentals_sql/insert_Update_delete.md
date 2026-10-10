@@ -273,7 +273,7 @@ Now, updating the table:
 insert into employees (first_name, last_name, email, department, salary)
 Values
 ('Bhanu','Pratap','pratap.bhanu@example.com','Marketing','34000');
-
+```
 ```sql
 update employees
 set salary = salary + 1000
