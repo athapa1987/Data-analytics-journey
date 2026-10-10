@@ -204,7 +204,7 @@ alter table employees
 add column created_at timestamp default current_timestamp, 
 add column created_by varchar(50) default current_user, 
 Add column updated_at timestamp, 
-add column updated_by varchar (50);
+add column updated_by varchar (50) default current_user;
 ```
 Updating table 
 ```sql
