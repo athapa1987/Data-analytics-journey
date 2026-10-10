@@ -237,45 +237,76 @@ drop  function if exists log_salary_increment;
 Now, creating final trigger for both of the functions; 
 
 ```sql
-create or replace function log_salary_changes ()
-returns trigger as $$
-begin
-if (tg_op= 'insert') then
-insert into salary_history (employees_id, old_salry, new_salary, updated_by)
-values (new.employees_id, 0.00, new.salary, current_user);
-return new; 
-elsif (tg_op= 'update') then
-if old.salary is distinct from new.salary then 
-insert into salary_history (employees_id,old_salary,new_salary,updated_by)
-values (old.employees_id, old.salary, new.salary, current_user);
-end if; 
-return new;
-end if; 
-return null;
-end;
-$$ language plpgsql;
+CREATE OR REPLACE FUNCTION log_salary_changes ()
+RETURNS TRIGGER AS $$
+BEGIN 
+IF (TG_OP= 'INSERT') THEN
+INSERT INTO salary_history (employees_id, old_salary, new_salary)
+VALUES (new.employees_id, 0.00, new.salary);
+RETURN NEW; 
+ELSIF (TG_OP= 'UPDATE') THEN
+IF old.salary IS DISTINCT FROM new.salary THEN 
+INSERT INTO salary_history (employees_id,old_salary,new_salary)
+VALUES (old.employees_id, old.salary, new.salary);
+END IF; 
+RETURN NEW; 
+END IF; 
+RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
 ```
 
-executing trigger, 
+executing function, 
+
 ```sql
-create trigger trg_Salary_history_update
-after insert on employees 
-for each row
-execute function log_salary_changes ();
+CREATE TRIGGER trg_Salary_history_update
+AFTER INSERT OR UPDATE ON employees 
+FOR EACH ROW
+EXECUTE FUNCTION log_salary_changes();
 ```
+    I encountered a problem while running this function because I had written all my queries in lowercase. I tried many times, but it worked after I changed all the commands to uppercase.
 
+    I also found out that `TG_OP = 'INSERT'` and `TG_OP = 'UPDATE'` should use uppercase string values because string comparisons are case-sensitive. `INSERT` and `insert`, or `UPDATE` and `update`, are not always treated as equal.
+    
 Now, updating the table:
 ```sql
 insert into employees (first_name, last_name, email, department, salary)
 Values
 ('Bhanu','Pratap','pratap.bhanu@example.com','Marketing','34000');
 
-update employees 
+```sql
+update employees
 set salary = salary + 1000
-where department = 'finance';
+where department = 'Finance';
 ```
 Now, verifying: 
 ```sql
+select 
+sh. history_id,
+e. employees_id,
+e. first_name||' '||e.last_name as Full_name,
+sh.old_salary,
+sh.new_salary,
+e. department
+from salary_history sh
+join employees e 
+on sh.employees_id = e. employees_id
+order by e.department, sh. employees_id;
+```
+``` sql
+select 
+sh. history_id,
+e. employees_id,
+e. first_name||' '||e.last_name as Full_name,
+sh.old_salary,
+sh.new_salary,
+e. department
+from salary_history sh
+join employees e 
+on sh.employees_id = e. employees_id
+where e. email= 'pratap.bhanu@example.com';
+```
+Result: The salary changed in finance and new entry of employee has been successfully updated in salary history table automatically. 
 
 
 
