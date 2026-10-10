@@ -217,7 +217,7 @@ where updated_by is null;
 For salary history table 
 ```sql
 alter salary_history
-add column updated_by varchar (50);
+add column updated_by varchar (50) default current_user;
 ```
 Bringing the data back to the salary history 
 ```sql
@@ -235,8 +235,42 @@ drop  function if exists log_employee_audit;
 drop  function if exists log_salary_increment; 
 ```
 Now, creating final trigger for both of the functions; 
+
+```sql
 create or replace function log_salary_changes ()
 returns trigger as $$
 begin
 if (tg_op= 'insert') then
+insert into salary_history (employees_id, old_salry, new_salary, updated_by)
+values (new.employees_id, 0.00, new.salary, current_user);
+return new; 
+elsif (tg_op= 'update') then
+if old.salary is distinct from new.salary then 
+insert into salary_history (employees_id,old_salary,new_salary,updated_by)
+values (old.employees_id, old.salary, new.salary, current_user);
+end if; 
+return new;
+end if; 
+return null;
+end;
+$$ language plpgsql;
+```
+
+executing trigger, 
+```sql
+create trigger trg_Salary_history_update
+after insert on employees 
+for each row
+execute function log_salary_changes ();
+```
+
+Now, updating the table:
+insert into employees (first_name, last_name, email, department, salary)
+Values
+('Bhanu','Pratap','pratap.bhanu@example.com','Marketing','34000');
+
+update employees 
+set salary = salary + 1000
+where department = 'finance';
+
 
