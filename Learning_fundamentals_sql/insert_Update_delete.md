@@ -178,10 +178,51 @@ $$ language plpgsql;
 * executing function:
 ```sql
 create trigger trg_employee_audit
-after update on employees 
+after insert on employees 
 for each row
 execute function log_employee_audit ();
 ```sql
 
+* so to try the function
+```sql
+insert into employees (first_name, last_name, email, department, salary)
+Values
+('Hari','Shanker','shanker.hari@example.com','Marketing','34000');
+```
+* Now checking if new employee is added to other table
+```sql
+select * from salary_history sh
+join employees e
+on sh.employees_id = e.employees_id
+where e.first_name = 'Hari' and e.last_name = 'Shanker';
+```
+Verified: it worked and updated successfully. 
 
+* whatif somebody changed the data for their own benefit, so that updating employees table
+```sql
+alter table employees
+add column created_at timestamp default current_timestamp, 
+add column created_by varchar(50) default current_user, 
+Add column updated_at timestamp, 
+add column updated_by varchar (50);
+```
+Updating table 
+```sql
+set updated_at = current_timestamp, 
+updated_by = 'Initial setup' 
+where updated_by is null; 
+```
+* so the current user, updated_by, updated_at will remain postgres as I did not make any log in or role and login passwords yet.
 
+For salary history table 
+```sql
+alter salary_history
+add column updated_by varchar (50);
+```
+Bringing the data back to the salary history 
+```sql
+UPDATE salary_history sh
+SET updated_by = e.updated_by
+FROM employees e
+WHERE sh.employees_id = e.employees_id;
+```
