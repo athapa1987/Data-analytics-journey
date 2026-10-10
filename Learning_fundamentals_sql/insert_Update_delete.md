@@ -226,3 +226,17 @@ SET updated_by = e.updated_by
 FROM employees e
 WHERE sh.employees_id = e.employees_id;
 ```
+* here the previous function will leave the new column null in salary history
+thus I am dropping the previous triggers (I am clearing all the triggers to see I checked from pgadmin as it is easy and faster then to write codes for me and could have deleted from there too)
+```sql
+drop trigger trg_employee_audit on employees;
+drop trigger trg_salary_history on employees;
+drop  function if exists log_employee_audit;
+drop  function if exists log_salary_increment; 
+```
+Now, creating final trigger for both of the functions; 
+create or replace function log_salary_changes ()
+returns trigger as $$
+begin
+if (tg_op= 'insert') then
+
