@@ -5,9 +5,9 @@ Dropping all previous databases, tables, functions, and triggers from the `ashok
 ```sql
 DROP DATABASE ashok WITH (FORCE);
 ```
-I tried to drop the database, but PostgreSQL would not allow it because there were still active connections. I used WITH (FORCE) to terminate eligible connections and drop the database.
+*I tried to drop the database, but PostgreSQL would not allow it because there were still active connections. I used WITH (FORCE) to terminate eligible connections and drop the database.*
 
-**'Note'**: This is only for practice purposes. In a real-world environment, I would not use this command on a production database without proper authorization, backups, and a clear understanding of the consequences, as it permanently deletes the database and its data.
+**Note**: This is only for practice purposes. In a real-world environment, I would not use this command on a production database without proper authorization, backups, and a clear understanding of the consequences, as it permanently deletes the database and its data.
 
 
 ## creating database 
