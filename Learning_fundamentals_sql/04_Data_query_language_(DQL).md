@@ -96,7 +96,7 @@ order by salary;
 select * from employees
 order by department asc;
 ```
-    - we can omit asc as if we don't put anything it will be arranged in ascending order
+- we can omit asc as if we don't put anything it will be arranged in ascending order
 
 **'LIMIT` - to view specific number of rows**
 *Viewing 10 employees on the top of the list
