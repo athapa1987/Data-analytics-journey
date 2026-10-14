@@ -23,36 +23,31 @@ I am transitioning to query language and analysis.
     ```sql
     select * from employees
   where salary > 50000 and department = 'IT';
-   select distinct department from employees;
    ```
-  
-## Selecting the data columns, data from table
-* Basic Select - selecting all the data from table
-  ```sql
-  select * from employees;
-  ``
-  *  Selecting specific columns:
-  ```sql
-  select
-  employees_code,
-  full_name,
-  salary from employees;
-  ```
-  * Selecting specific information with where
-    ```sql
-    select * from employees
-    where salary >= 50000;
-    ```
-    
+* Only viewing data of two departments IT and Finace*
+```sql
+ select * from employees
+  where department = 'IT' or department = 'Finance';
+```
+
   *Finding out distinct departments (how many departments are there)*
   ```sql
   select distinct department from employees;
   ```
   *retrieving information using 'SELECT' and 'LIKE'
 
-   Employee name starting form A
+  - Employee name starting form A
+```sql
   select * from employees
   where full_name like 'A%';
+```
+
+ - finding the employees with name 'ILIKE' (using case insensitive)
+```sql
+select * from employees
+  where full_name ilike 'arjun%';
+```
+
   
 
 
