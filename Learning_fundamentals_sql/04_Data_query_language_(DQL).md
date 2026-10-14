@@ -13,18 +13,18 @@ I am transitioning to query language and analysis.
   full_name,
   salary from employees;
   ```
-  **Selecting specific information with 'WHERE'**
+**Selecting specific information with 'WHERE'**
 
 *employees having salary more than or equal to 50000.*
 ```sql
 select * from employees
 where salary >= 50000;
 ```
-    *salary more than 500000 'AND' department is IT.*
-    ```sql
-    select * from employees
-  where salary > 50000 and department = 'IT';
-   ```
+*salary more than 500000 'AND' department is IT.*
+```sql
+select * from employees
+where salary > 50000 and department = 'IT';
+```
 * Only viewing data of two departments IT and Finace*
 ```sql
  select * from employees
