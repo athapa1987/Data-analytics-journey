@@ -46,7 +46,7 @@ WHERE department not in ('IT', 'Finance');
 select distinct department from employees;
 ```
 
-*retrieving information using 'SELECT' and 'LIKE'
+*retrieving information using 'SELECT' and 'LIKE'*
 - Employee name starting form A
 ```sql
   select * from employees
