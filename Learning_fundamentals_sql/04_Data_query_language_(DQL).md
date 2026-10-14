@@ -7,7 +7,7 @@ I am transitioning to query language and analysis.
   select * from employees;
   ```
 **Selecting specific columns**
-  ```sql
+```sql
   select
   employees_code,
   full_name,
