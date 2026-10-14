@@ -21,9 +21,11 @@ I am transitioning to query language and analysis.
     ```
     *salary more than 500000 'AND' department is IT.*
     ```sql
-   # Data Query Language:
-## Introduction:
-I am transitioning to query language and analysis. 
+    select * from employees
+  where salary > 50000 and department = 'IT';
+   select distinct department from employees;
+   ```
+  
 ## Selecting the data columns, data from table
 * Basic Select - selecting all the data from table
   ```sql
