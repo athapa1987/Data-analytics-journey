@@ -5,8 +5,8 @@ I am transitioning to query language and analysis.
 **Basic Select - selecting all the data from table**
   ```sql
   select * from employees;
-  ``
-** Selecting specific columns:** 
+  ```
+** Selecting specific columns ** 
   ```sql
   select
   employees_code,
