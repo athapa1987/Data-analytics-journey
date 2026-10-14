@@ -25,25 +25,35 @@ where salary >= 50000;
 select * from employees
 where salary > 50000 and department = 'IT';
 ```
-* Only viewing data of two departments IT and Finace*
+*Only viewing data of two departments IT and Finace*
 ```sql
  select * from employees
   where department = 'IT' or department = 'Finance';
 ```
+or using 'IN'
+```sql
+SELECT * FROM employees
+WHERE department in ('IT', 'Finance');
+```
+*Finding department other than IT and Finance*
+```sql
+SELECT * FROM employees
+WHERE department not in ('IT', 'Finance');
+```
 
-  *Finding out distinct departments (how many departments are there)*
-  ```sql
-  select distinct department from employees;
-  ```
-  *retrieving information using 'SELECT' and 'LIKE'
+*Finding out distinct departments (how many departments are there)*
+```sql
+select distinct department from employees;
+```
 
-  - Employee name starting form A
+*retrieving information using 'SELECT' and 'LIKE'
+- Employee name starting form A
 ```sql
   select * from employees
   where full_name like 'A%';
 ```
 
- - finding the employees with name 'ILIKE' (using case insensitive)
+- finding the employees with name 'ILIKE' (using case insensitive)
 ```sql
 select * from employees
   where full_name ilike 'arjun%';
