@@ -14,12 +14,12 @@ I am transitioning to query language and analysis.
   salary from employees;
   ```
   **Selecting specific information with 'WHERE'**
-  
-  *employees having salary more than or equal to 50000.*
-    ```sql
-    select * from employees
-    where salary >= 50000;
-    ```
+
+*employees having salary more than or equal to 50000.*
+```sql
+select * from employees
+where salary >= 50000;
+```
     *salary more than 500000 'AND' department is IT.*
     ```sql
     select * from employees
