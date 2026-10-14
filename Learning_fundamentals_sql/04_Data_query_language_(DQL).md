@@ -14,6 +14,7 @@ I am transitioning to query language and analysis.
   salary from employees;
   ```
   **Selecting specific information with 'WHERE'**
+  
   *employees having salary more than or equal to 50000.*
     ```sql
     select * from employees
