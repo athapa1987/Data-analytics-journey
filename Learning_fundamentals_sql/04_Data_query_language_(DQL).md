@@ -2,7 +2,7 @@
 ## Introduction:
 I am transitioning to query language and analysis. 
 ## Selecting the data columns, data from table
-**Basic Select - selecting all the data from table**
+**Basic `SELECT` - selecting all the data from table**
   ```sql
   select * from employees;
   ```
@@ -13,14 +13,14 @@ I am transitioning to query language and analysis.
   full_name,
   salary from employees;
   ```
-**Selecting specific information with 'WHERE'**
+**Selecting specific information with `WHERE`**
 
 *employees having salary more than or equal to 50000.*
 ```sql
 select * from employees
 where salary >= 50000;
 ```
-*salary more than 500000 'AND' department is IT.*
+*salary more than 500000 `AND` department is IT.*
 ```sql
 select * from employees
 where salary > 50000 and department = 'IT';
@@ -30,30 +30,30 @@ where salary > 50000 and department = 'IT';
  select * from employees
   where department = 'IT' or department = 'Finance';
 ```
-or using 'IN'
+or using `IN`
 ```sql
 SELECT * FROM employees
 WHERE department in ('IT', 'Finance');
 ```
-*Finding department other than IT and Finance*
+*Finding department other than IT and Finance using `not in`*
 ```sql
 SELECT * FROM employees
 WHERE department not in ('IT', 'Finance');
 ```
 
-*Finding out distinct departments (how many departments are there)*
+*Finding out `distinct` departments (how many departments are there)*
 ```sql
 select distinct department from employees;
 ```
 
-*retrieving information using 'SELECT' and 'LIKE'*
+*retrieving information using `SELECT` and `LIKE`*
 - Employee name starting form A
 ```sql
   select * from employees
   where full_name like 'A%';
 ```
 
-- finding the employees with name 'ILIKE' (using case insensitive)
+- finding the employees with name `ILIKE` (using case insensitive)
 ```sql
 select * from employees
   where full_name ilike 'arjun%';
