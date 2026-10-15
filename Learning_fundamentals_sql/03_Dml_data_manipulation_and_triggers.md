@@ -12,7 +12,7 @@ DROP DATABASE ashok WITH (FORCE);
 
 ## creating database 
 ```sql
-create database ashok;
+create database HR_database;
 ```
 
 ## Creating table employees
