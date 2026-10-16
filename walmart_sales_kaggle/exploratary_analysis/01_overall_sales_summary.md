@@ -12,7 +12,7 @@ SELECT
     ROUND(MAX(weekly_sales)::numeric, 2) AS max_weekly_sales,
     ROUND(STDDEV(weekly_sales)::numeric, 2) AS std_dev_sales
 FROM walmart_sales;
-'''
+```
 ### Query Output
 | total_records | total_revenue | avg_weekly_sales | min_weekly_sales | max_weekly_sales | std_dev_sales |
 | :---: | :---: | :---: | :---: | :---: | :---: |
