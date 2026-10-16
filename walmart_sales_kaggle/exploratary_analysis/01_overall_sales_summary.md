@@ -18,4 +18,4 @@ FROM walmart_sales;
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | **6435** | 6,737,218,987.11 | 1,046,964.88 | 209,986.25 | 3,818,686.45 | 564,366.62 |
 
-There were 6435 records 6.7 billion of total sales and so on 
+***Results:*** There were 6435 records 6.7 billion of total sales with average sale of 1.04 million. Maximum weekly sales over the period was around 3.81 million and minimum weekly sales was around 210,000 and standard deviation of sales was 564,366. As standard deviation measures the risk or fluctuation and without benchmarking most of this results do not make much sense and help in decision making. 
