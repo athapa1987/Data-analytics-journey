@@ -20,6 +20,7 @@ order by total_revenue desc;
 select count (distinct store) AS unique_store_count
 FROM walmart_sales;
 ```
+*This was not need maybe as the row numbers were there.*
 
 *I did not include the query output as it takes long time to type here.*
 ***Results:***
