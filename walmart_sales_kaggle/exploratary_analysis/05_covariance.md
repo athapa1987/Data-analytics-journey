@@ -1,4 +1,4 @@
-##Introduction: 
+## Introduction:
 As standard deviation is one of the widely used method to calculate dispersion of distribution but limited as in walmart_sales analysis it present value on dollar and STDDEV is higher because of higher sales. Therefore covariance gives percentages for the dispersion and calculating it. 
 ```sql
 with store_avg_std as (SELECT -- step -1, calculating std and mean
