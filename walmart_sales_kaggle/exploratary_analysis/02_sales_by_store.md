@@ -27,6 +27,6 @@ FROM walmart_sales;
 *From the above query:*
 * There were total 45 stores with 143 weeks of sales. 
 * Store 20 have highest sales of 301M while 33 have lowest revenue around 37M. Store numbers 4, 14, 13, 2 are second, third and so on. As the numbers of weeks are same so the average sales are also in similar order. As we don't know the size of store, number of employees and other costs so we could not comment on profitability of the stores. 
-* Using `ORDER BY` standard deviation store 14 comes top of the sales while store 37 comes to the last. From the results it shows that the stores with higher sales have more fluctuations in sales than stores having lower sales as there sales looks more consistent sales. However, it also noted that the individual average revenue are more dispersed or scattered comparison to the all store average.  
+* Using `ORDER BY` standard deviation store 14 comes top of the sales while store 37 comes to the last. From the results it shows that the stores with higher sales have more variation than stores having lower sales as least variation or consistentancy in weekly sales because they have lower standard deviation. However, it also noted that the individual average revenue are more dispersed or scattered comparison to the all store average.  
 * changed order by to max weekly sales at store 14 and min weekly sales at store 4 (the order shows the highest and lowest sales of the store and arranged by this functions)
 4. I did not ordered by avg weekly sales as it will be the same order as total revenue
