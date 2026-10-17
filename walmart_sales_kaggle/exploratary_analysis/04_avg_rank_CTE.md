@@ -20,7 +20,7 @@ round (((holiday_avg-non_holiday_avg)/nullif(non_holiday_avg, 0)*100) :: numeric
 Rank () over (order by overall_avg desc) as Overall_avg_rank,
 Rank () over (order by non_holiday_avg desc) as non_holiday_rank,
 Rank () over (order by holiday_avg desc) as holiday_rank,
-Rank () over (order by sales_difference_pct) as diff_pct_rank_sales
+Rank () over (order by sales_difference_pct desc) as diff_pct_rank_sales
 from percentage_change)
 Select -- selecting all columns and I arrange in the order I wanted.
 store_number,
@@ -38,5 +38,8 @@ Total_holiday_weeks
 from avg_rank
 order by overall_avg desc;
 ```
-```
-***Results:**
+***Results:***
+* Store 20 have highest average overall, holiday and non holiday sales but the change percentage of sales from normal to holiday week it ranks in 19.
+* 5 stores have lower sales in holidays than in normal week. Store 44 have 2.38% sales dropped in holiday weeks. Furthermore store 44 also ranked 44 strangely in overall, normal week and holiday week average sales.
+
+***Note***: Its good idea to create view and save the table to see in future and to run any other queries. 
