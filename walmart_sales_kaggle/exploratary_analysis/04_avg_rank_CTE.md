@@ -2,7 +2,7 @@
 I am here trying to use CTE (comman table expressions) to make the query more complicated and more steps to compute. 
 I want to see the difference between holiday and normal weeks, percentage, ranking of stores on the basis of overall, holiday and non holiday weeks. 
 ```sql
-With store_avg as (SELECT 
+With store_avg as (SELECT -- step -1 calculating avarages from walmart_sales as
 	store as store_number,
 	count (*) as total_weeks,
     COUNT(CASE WHEN Holiday_flag = FALSE THEN 1 END) AS total_normal_weeks,
@@ -12,17 +12,17 @@ With store_avg as (SELECT
     ROUND(AVG(CASE WHEN Holiday_flag = TRUE THEN weekly_sales END)::numeric, 2) AS holiday_avg
 FROM walmart_sales
 group by store),
-percentage_change as (select *,
+percentage_change as (select *, -- step -2 selecting the all fields from step -1 and calculationg sales difference pct
 round (((holiday_avg-non_holiday_avg)/nullif(non_holiday_avg, 0)*100) :: numeric, 2) as sales_difference_pct
  from store_avg),
- avg_rank as
+ avg_rank as  -- step -3 selecting all columns from step - 2 and ranking the calculations from step - 1 and 2
  (select *,
 Rank () over (order by overall_avg desc) as Overall_avg_rank,
 Rank () over (order by non_holiday_avg desc) as non_holiday_rank,
 Rank () over (order by holiday_avg desc) as holiday_rank,
 Rank () over (order by sales_difference_pct) as diff_pct_rank_sales
 from percentage_change)
-Select 
+Select -- selecting all columns and I arrange in the order I wanted.
 store_number,
 overall_avg, 
 overall_avg_rank,
@@ -37,5 +37,6 @@ Total_normal_weeks,
 Total_holiday_weeks 
 from avg_rank
 order by overall_avg desc;
+```
 ```
 ***Results:**
