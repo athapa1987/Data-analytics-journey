@@ -59,7 +59,7 @@ WHERE department not in ('IT', 'Finance');
 select * from employees
   where not department = 'IT' and not department = 'Finance';
 ```
-**Tips** - It is better to use 'In' or 'not in' while choosing information from same column instead of using multiple `or`, `and` and `not` conditions. 
+**Tips** - It is better to use 'In' or 'not in' while choosing information instead of using multiple `or`, `and` and `not` conditions. 
 
 *Finding out `distinct` departments (how many departments are there)*
 ```sql
