@@ -14,7 +14,7 @@ I am transitioning to query language and data analysis. I documented the queries
   full_name,
   salary from employees;
   ```
-**Selecting specific information with `WHERE` using other operators `AND`, `OR`, `NOT`, `IN`, `NOT IN` `LIKE`, `ILIKE`**
+**Filtering or retrieving specific information with `WHERE` using other operators `AND`, `OR`, `NOT`, `IN`, `NOT IN` `LIKE`, `ILIKE`**
 
 *employees having salary more than or equal to 50000.*
 ```sql
@@ -39,7 +39,7 @@ where salary > 50000 or department = 'HR'
 select * from employees
 where not department = 'HR'
 ```
-*Retrieving data two departments IT and Finace*
+*Retrieving data of two departments IT and Finace*
 ```sql
  select * from employees
   where department = 'IT' or department = 'Finance';
