@@ -14,6 +14,7 @@ I am transitioning to query language and data analysis. I documented the queries
   full_name,
   salary from employees;
   ```
+## Filtering:
 **Filtering or retrieving specific information with `WHERE` using other operators `AND`, `OR`, `NOT`, `IN`, `NOT IN` `LIKE`, `ILIKE`**
 
 *employees having salary more than or equal to 50000.*
