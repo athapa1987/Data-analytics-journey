@@ -129,7 +129,7 @@ join salary_history sh
 on e.employees_id = sh. employees_id
 order by e.employees_id, sh.updated_on desc;
 ```
-*How much salary and how many times salary was increased in IT department*
+*Salary history and salary increased in IT department*
 ```sql
 select
 e.employees_id
@@ -143,6 +143,37 @@ on e.employees_id = sh. employees_id
 where department = 'IT'
 order by e.employees_id, sh.updated_on;
 ```
+**Note**: I did not used left, right and outer join. Left join shows all the matching rows and rows in the left (table used in from) and right join shows the matching rows plus information on join table while outer join shows all the matching rows plus other rows from all tables. 
+
+## Group by:
+*How many times salary was increased?*
+* Using both join and group by to see it and using aggregate function count ()
+```sql
+select
+e. employees_id
+, e. full_name
+, count (sh. old_salary) as number_of_increases
+from employees e
+join salary_history sh
+on e.employees_id = sh. employees_id
+group by e. employees_id, e.full_name
+order by e. employees_id;
+```
+*to view the How many times salary was increased where clause could be added*
+```sql
+select
+e. employees_id
+, e. full_name
+, count (sh. old_salary) as number_of_increases
+from employees e
+join salary_history sh
+on e.employees_id = sh. employees_id
+where e.department = 'IT'
+group by e. employees_id, e.full_name
+order by e. employees_id;
+```
+**Note:** It can be always added filtering lines to retrieve information on queries. Group by put rows together on the basis of group by is used and perform any calculation based on group by command. 
+
 
 
 
