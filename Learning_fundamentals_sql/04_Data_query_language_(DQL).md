@@ -100,7 +100,7 @@ order by department asc;
 - we can omit asc as if we don't put anything it will be arranged in ascending order
 
 **'LIMIT` - to view specific number of rows**
-*Viewing 10 employees on the top of the list
+*Viewing 10 employees on the top of the list*
 ```sql
 select * from employees
 Limit 10;
@@ -113,7 +113,36 @@ order by salary desc
 limit 5;
 ```
 
+## Join: 
+**Inner Join or Join**
+*Viewing the last salary and the current salary of the employees*
+```sql
+select distinct on (e.employees_id) -- used distinct on because do not want to see the older salaries
+e.employees_id
+, e.full_name
+, e. employees_code
+, e. department
+, sh. old_salary
+, e. salary
+from employees e
+join salary_history sh
+on e.employees_id = sh. employees_id
+order by e.employees_id, sh.updated_on desc;
+```
+*How much salary and how many times salary was increased in IT department*
+```sql
+select
+e.employees_id
+, e.full_name
+, e. employees_code
+, sh. old_salary
+, e. salary
+from employees e
+join salary_history sh
+on e.employees_id = sh. employees_id
+where department = 'IT'
+order by e.employees_id, sh.updated_on;
+```
 
-  
 
 
