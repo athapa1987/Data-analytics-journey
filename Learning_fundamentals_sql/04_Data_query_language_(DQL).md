@@ -127,7 +127,9 @@ e.employees_id
 from employees e
 join salary_history sh
 on e.employees_id = sh. employees_id
-order by e.employees_id, sh.updated_on desc; /* I ordered updated on descending because to see the latest salary change otherwise it will see on ascending order which will show the old salaries */
+order by e.employees_id, sh.updated_on desc; /* I ordered updated on descending
+because to see the latest salary change
+otherwise it will see on ascending order which will show the old salaries */
 ```
 *Salary history and salary increased in IT department*
 ```sql
