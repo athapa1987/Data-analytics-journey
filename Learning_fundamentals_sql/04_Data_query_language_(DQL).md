@@ -176,6 +176,19 @@ order by e. employees_id;
 ```
 **Note:** It can be always added filtering lines to retrieve information on queries. Group by put rows together on the basis of group by is used and perform any calculation based on group by command. 
 
+*Group by and having*
+```sql
+SELECT 
+    department, 
+    AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+Having avg (salary) > 50000;
+```
+*  As where clause could not be used in aggregate function so that group by and having is great option to filter data with operator.
+
+*If we need to group by average and other aggregate function but we also need to see the columns. We can use windows function 'partition by'. Group by collapse the rows and partition by shows.*
+
 
 
 
