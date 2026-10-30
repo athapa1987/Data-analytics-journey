@@ -185,7 +185,7 @@ FROM employees
 GROUP BY department
 Having avg (salary) > 50000;
 ```
-*  Because the `where` clause cannot accept aggregate functions (like `avg() or `sum`()), combining `group by` with `having` is the correct way to filter grouped data using operators.
+*  Because the `where` clause cannot accept aggregate functions (like `avg` or `sum`), combining `group by with `having` is the correct way to filter grouped data using operators.
 
 *If we need to calculate an average or other aggregate function while keeping all individual row details visible, we use the window function `over (partition by ...)`. `Group by` collapses rows into summary cards, whereas `partition by` computes the group aggregate side-by-side while preserving every individual row.*
 
