@@ -114,7 +114,7 @@ limit 5;
 ```
 
 ## Join: 
-**Inner Join or Join**
+**`Inner Join` or `Join`**
 *Viewing the last salary and the current salary of the employees*
 ```sql
 select distinct on (e.employees_id) -- used distinct on because do not want to see the older salaries
@@ -145,9 +145,9 @@ on e.employees_id = sh. employees_id
 where department = 'IT'
 order by e.employees_id, sh.updated_on;
 ```
-**Note**: I did not used left, right and outer join. Left join shows all the matching rows and rows in the left (table used in from) and right join shows the matching rows plus information on join table while outer join shows all the matching rows plus other rows from all tables. 
+**Note**: I did not used `left join`, `right join` and `outer join`. `Left join` shows all the matching rows and rows in the left (table used in from) and `right join` shows the matching rows plus information on join table while `outer join` shows all the matching rows plus other rows from all tables. 
 
-## Group by:
+## `Group by`:
 *How many times salary was increased?*
 * Using both join and group by to see it and using aggregate function count ()
 ```sql
@@ -174,9 +174,9 @@ where e.department = 'IT'
 group by e. employees_id, e.full_name
 order by e. employees_id;
 ```
-**Note:** It can be always added filtering lines to retrieve information on queries. Group by put rows together on the basis of group by is used and perform any calculation based on group by command. 
+**Note:** It can be always added filtering lines to retrieve information on queries. Group by put rows together on the basis of group by is used and perform any calculation based on group by command.
 
-*Group by and having*
+*`Group by` and `having`*
 ```sql
 SELECT 
     department, 
@@ -185,9 +185,9 @@ FROM employees
 GROUP BY department
 Having avg (salary) > 50000;
 ```
-*  As where clause could not be used in aggregate function so that group by and having is great option to filter data with operator.
+*  Because the `where` clause cannot accept aggregate functions (like `avg() or `sum`()), combining `group by` with `having` is the correct way to filter grouped data using operators.
 
-*If we need to group by average and other aggregate function but we also need to see the columns. We can use windows function 'partition by'. Group by collapse the rows and partition by shows.*
+*If we need to calculate an average or other aggregate function while keeping all individual row details visible, we use the window function `over (partition by ...)`. `Group by` collapses rows into summary cards, whereas `partition by` computes the group aggregate side-by-side while preserving every individual row.*
 
 
 
