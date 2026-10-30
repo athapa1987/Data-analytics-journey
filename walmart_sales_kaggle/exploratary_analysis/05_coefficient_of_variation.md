@@ -13,7 +13,7 @@ avg_weekly_sales
 std_dev_sales, 
 Round((std_dev_sales/nullif (avg_weekly_sales, 0)*100) :: numeric, 2) as store_cv_pct
 from store_avg_std)
-select * from cov_sales -- step 3 recalling the columns
+select * from cv_sales -- step 3 recalling the columns
 order by store_cv_pct desc;
 ```
 
