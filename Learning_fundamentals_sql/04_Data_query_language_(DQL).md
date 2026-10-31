@@ -185,9 +185,18 @@ FROM employees
 GROUP BY department
 Having avg (salary) > 50000;
 ```
-*  Because the `where` clause cannot accept aggregate functions (like `avg` or `sum`), combining `group by with `having` is the correct way to filter grouped data using operators.
+*  Because the `where` clause cannot accept aggregate functions (like `avg` or `sum`), combining `group by` with `having` is the correct way to filter grouped data using operators.
 
 *If we need to calculate an average or other aggregate function while keeping all individual row details visible, we use the window function `over (partition by ...)`. `Group by` collapses rows into summary cards, whereas `partition by` computes the group aggregate side-by-side while preserving every individual row.*
+```sql
+SELECT 
+full_name,
+department,
+salary,
+Round (AVG(salary) OVER (PARTITION BY department), 2) AS dept_avg_salary, -- calculating average salary by department
+RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank_in_dept -- ranking and ordering descending
+FROM employees;
+```
 
 
 
