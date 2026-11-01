@@ -210,5 +210,36 @@ round(avg (salary) over (partition by department order by department), 2) as ave
 from employees;
 ```
 
+# Dates: 
+```sql
+set datestyle = 'iso, ymd'; -- setting date format
+```
+**If I want to know how many employees were worked**
+
+SELECT full_name, 
+extract(year from start_date) AS start_year,
+extract (year from current_date) - extract (year from start_date) as years_worked
+from employees;
+using extract, in following I wanted to know only years and when they started
+```sql
+SELECT full_name, 
+       EXTRACT(YEAR FROM start_date) AS start_year,
+       EXTRACT(YEAR FROM AGE(CURRENT_DATE, start_date)) AS years_worked 
+FROM employees;
+```
+I calculated the days they work and converted to year and value in years in decimal
+```sql
+SELECT full_name, 
+       EXTRACT(YEAR FROM start_date) AS start_year,
+       ROUND((CURRENT_DATE - start_date) / 365, 1) AS years_worked
+FROM employees
+```
+to find out exact year, month and days of work 
+```sql
+SELECT full_name, 
+       start_date,
+       AGE(CURRENT_DATE, start_date) AS time_worked
+FROM employees;
+```
 
 
