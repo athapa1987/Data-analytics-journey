@@ -112,7 +112,13 @@ select * from employees
 order by salary desc
 limit 5;
 ```
-
+*to find skipping rows using offset.*
+```sql
+select * from employees
+order by salary desc
+limit 10 
+offset 3;
+```
 ## Join: 
 **`Inner Join` or `Join`**
 *Viewing the last salary and the current salary of the employees*
