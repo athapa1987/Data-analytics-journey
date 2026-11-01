@@ -117,7 +117,7 @@ limit 5;
 **`Inner Join` or `Join`**
 *Viewing the last salary and the current salary of the employees*
 ```sql
-select distinct on (e.employees_id) -- used distinct on because do not want to see the older salaries
+select distinct on (e.employees_id) /*used distinct on employees_d because I want to see latest growth and if I don't do this and order by employee_id it will not fulfil my purpose.*/
 e.employees_id
 , e.full_name
 , e. employees_code
@@ -198,6 +198,17 @@ RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank_in_dep
 FROM employees;
 ```
 
+# Windows function
+## partition by:
+lets assume we need to average salary, total salary and how many employees are there in every department. Using group by collapse the rows so `over (partition by ...)` is useful function in this instance. 
+```sql
+select full_name,
+department,
+count(employees_id) over (partition by department) as employees_per_department,
+sum(salary) over (partition by department) as total_salary_per_department,
+round(avg (salary) over (partition by department order by department), 2) as average_salary_per_department
+from employees;
+```
 
 
 
