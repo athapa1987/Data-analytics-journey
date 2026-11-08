@@ -1,22 +1,30 @@
-**to go to postgres**
-
+**connecting to postgres**
+```bash
 psql -U postgres
+``
 
-**to view database list**
-
+**view database list**
+```bash
 \l
-
-**to open database**
-
+```
+**connect to a database**
+```bash
 \c table name
-
-**to see table list**
-
+```
+**view table list**
+```bash
 \dt
-
-**to view table heading and data type**
-
+```
+**View table structure (columns, data types, constraints)**
+```bash
 \d table name
-
+```
 - it display the table information and it is more easier and clear to view than to see in pgadmin
-- 
+
+**quit postgres**
+```bash
+\q
+```
+
+
+
