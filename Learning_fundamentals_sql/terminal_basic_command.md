@@ -1,7 +1,7 @@
 **connecting to postgres**
 ```bash
 psql -U postgres
-``
+```
 
 **view database list**
 ```bash
