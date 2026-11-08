@@ -25,6 +25,6 @@ psql -U postgres
 ```bash
 \q
 ```
-
+**Note:** These are the PostgreSQL terminal commands I consider most important for database navigation. Other commands and SQL queries are documented separately.
 
 
