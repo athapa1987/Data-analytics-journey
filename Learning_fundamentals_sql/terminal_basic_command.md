@@ -25,6 +25,10 @@ psql -U postgres
 ```bash
 \q
 ```
+
+**to directly connect to the database**
+psql -U postgres -d (the database name)
+
 **Note:** These are the PostgreSQL terminal commands I consider most important for database navigation. Other commands and SQL queries are documented separately.
 
 
