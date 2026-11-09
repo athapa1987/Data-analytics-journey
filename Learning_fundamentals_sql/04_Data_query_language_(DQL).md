@@ -204,6 +204,18 @@ RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank_in_dep
 FROM employees;
 ```
 
+## Subqueries:
+* If I want to see which department have below or above the company average salary then
+  ```sql
+  select 
+	department,
+	round(avg (salary) - (select avg(salary) from employees),2) as compare_with_global_avg
+from employees 
+group by department
+order by compare_with_global_avg
+```
+
+
 # Windows function
 ## partition by:
 lets assume we need to average salary, total salary and how many employees are there in every department. Using group by collapse the rows so `over (partition by ...)` is useful function in this instance. 
